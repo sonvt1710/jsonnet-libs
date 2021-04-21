@@ -15,7 +15,6 @@ local enterprise-metrics = import "github.com/grafana/jsonnet-libs/enterprise-me
 * [`obj _config`](#obj-_config)
   * [`obj _config.commonArgs`](#obj-_configcommonargs)
     * [`bool _config.commonArgs.auth.enabled`](#bool-_configcommonargsauthenabled)
-    * [`bool _config.commonArgs.auth.type`](#bool-_configcommonargsauthtype)
     * [`string _config.commonArgs.cluster-name`](#string-_configcommonargscluster-name)
     * [`string _config.commonArgs.memberlist.join`](#string-_configcommonargsmemberlistjoin)
     * [`string _config.commonArgs.runtime-config.file`](#string-_configcommonargsruntime-configfile)
@@ -26,7 +25,6 @@ local enterprise-metrics = import "github.com/grafana/jsonnet-libs/enterprise-me
 * [`obj adminApi`](#obj-adminapi)
   * [`obj adminApi.args`](#obj-adminapiargs)
     * [`bool adminApi.args.auth.enabled`](#bool-adminapiargsauthenabled)
-    * [`bool adminApi.args.auth.type`](#bool-adminapiargsauthtype)
     * [`string adminApi.args.bootstrap.license.path`](#string-adminapiargsbootstraplicensepath)
     * [`string adminApi.args.cluster-name`](#string-adminapiargscluster-name)
     * [`string adminApi.args.memberlist.join`](#string-adminapiargsmemberlistjoin)
@@ -40,7 +38,6 @@ local enterprise-metrics = import "github.com/grafana/jsonnet-libs/enterprise-me
 * [`obj compactor`](#obj-compactor)
   * [`obj compactor.args`](#obj-compactorargs)
     * [`bool compactor.args.auth.enabled`](#bool-compactorargsauthenabled)
-    * [`bool compactor.args.auth.type`](#bool-compactorargsauthtype)
     * [`string compactor.args.cluster-name`](#string-compactorargscluster-name)
     * [`string compactor.args.memberlist.join`](#string-compactorargsmemberlistjoin)
     * [`string compactor.args.runtime-config.file`](#string-compactorargsruntime-configfile)
@@ -53,7 +50,6 @@ local enterprise-metrics = import "github.com/grafana/jsonnet-libs/enterprise-me
 * [`obj distributor`](#obj-distributor)
   * [`obj distributor.args`](#obj-distributorargs)
     * [`bool distributor.args.auth.enabled`](#bool-distributorargsauthenabled)
-    * [`bool distributor.args.auth.type`](#bool-distributorargsauthtype)
     * [`string distributor.args.cluster-name`](#string-distributorargscluster-name)
     * [`string distributor.args.memberlist.join`](#string-distributorargsmemberlistjoin)
     * [`string distributor.args.runtime-config.file`](#string-distributorargsruntime-configfile)
@@ -87,7 +83,6 @@ local enterprise-metrics = import "github.com/grafana/jsonnet-libs/enterprise-me
 * [`obj ingester`](#obj-ingester)
   * [`obj ingester.args`](#obj-ingesterargs)
     * [`bool ingester.args.auth.enabled`](#bool-ingesterargsauthenabled)
-    * [`bool ingester.args.auth.type`](#bool-ingesterargsauthtype)
     * [`string ingester.args.cluster-name`](#string-ingesterargscluster-name)
     * [`string ingester.args.memberlist.join`](#string-ingesterargsmemberlistjoin)
     * [`string ingester.args.runtime-config.file`](#string-ingesterargsruntime-configfile)
@@ -109,7 +104,6 @@ local enterprise-metrics = import "github.com/grafana/jsonnet-libs/enterprise-me
 * [`obj querier`](#obj-querier)
   * [`obj querier.args`](#obj-querierargs)
     * [`bool querier.args.auth.enabled`](#bool-querierargsauthenabled)
-    * [`bool querier.args.auth.type`](#bool-querierargsauthtype)
     * [`string querier.args.cluster-name`](#string-querierargscluster-name)
     * [`string querier.args.memberlist.join`](#string-querierargsmemberlistjoin)
     * [`string querier.args.runtime-config.file`](#string-querierargsruntime-configfile)
@@ -122,7 +116,6 @@ local enterprise-metrics = import "github.com/grafana/jsonnet-libs/enterprise-me
 * [`obj queryFrontend`](#obj-queryfrontend)
   * [`obj queryFrontend.args`](#obj-queryfrontendargs)
     * [`bool queryFrontend.args.auth.enabled`](#bool-queryfrontendargsauthenabled)
-    * [`bool queryFrontend.args.auth.type`](#bool-queryfrontendargsauthtype)
     * [`string queryFrontend.args.cluster-name`](#string-queryfrontendargscluster-name)
     * [`string queryFrontend.args.memberlist.join`](#string-queryfrontendargsmemberlistjoin)
     * [`string queryFrontend.args.runtime-config.file`](#string-queryfrontendargsruntime-configfile)
@@ -145,7 +138,6 @@ local enterprise-metrics = import "github.com/grafana/jsonnet-libs/enterprise-me
 * [`obj storeGateway`](#obj-storegateway)
   * [`obj storeGateway.args`](#obj-storegatewayargs)
     * [`bool storeGateway.args.auth.enabled`](#bool-storegatewayargsauthenabled)
-    * [`bool storeGateway.args.auth.type`](#bool-storegatewayargsauthtype)
     * [`string storeGateway.args.cluster-name`](#string-storegatewayargscluster-name)
     * [`string storeGateway.args.memberlist.join`](#string-storegatewayargsmemberlistjoin)
     * [`string storeGateway.args.runtime-config.file`](#string-storegatewayargsruntime-configfile)
@@ -160,7 +152,6 @@ local enterprise-metrics = import "github.com/grafana/jsonnet-libs/enterprise-me
 * [`obj tokengen`](#obj-tokengen)
   * [`obj tokengen.args`](#obj-tokengenargs)
     * [`bool tokengen.args.auth.enabled`](#bool-tokengenargsauthenabled)
-    * [`bool tokengen.args.auth.type`](#bool-tokengenargsauthtype)
     * [`string tokengen.args.cluster-name`](#string-tokengenargscluster-name)
     * [`string tokengen.args.memberlist.join`](#string-tokengenargsmemberlistjoin)
     * [`string tokengen.args.runtime-config.file`](#string-tokengenargsruntime-configfile)
@@ -192,15 +183,6 @@ local enterprise-metrics = import "github.com/grafana/jsonnet-libs/enterprise-me
 *Default value: * `true`
 
 `auth.enabled` enables the tenant authentication
-
-### bool _config.commonArgs.auth.type
-
-*Default value: * `enterprise`
-
-`auth.type` configures the type of authentication in use.
-`enterprise` uses Grafana Enterprise token authentication.
-`default` uses Cortex authentication.
-
 
 ### string _config.commonArgs.cluster-name
 
@@ -557,7 +539,7 @@ $ kubectl create secret generic gem-license -from-file=license.jwt
 
 ## obj querier.args
 
-
+`args` is a convenience field that can be used to modify the querier container arguments as key-value pairs.
 
 ### bool querier.args.auth.enabled
 
