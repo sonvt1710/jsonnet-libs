@@ -4,11 +4,12 @@ local signalUtils = import './utils.libsonnet';
 
 {
   new(
-    name,
+    signalName,
     type,
   ): {
 
     asTarget():: {},
+    asTableTarget:: {},
 
     //Return as grafana panel mixin target(query+legend) + overrides(like units)
     asPanelMixin():: {},
@@ -17,19 +18,23 @@ local signalUtils = import './utils.libsonnet';
     //Return query, usable in alerts/recording rules. No aggregation is applied.
     asRuleExpression():: {},
     //Return as timeSeriesPanel
-    asTimeSeries()::
+    asTimeSeries(name=signalName)::
       g.panel.text.new('')
       + g.panel.text.panelOptions.withTransparent(true)
       + g.panel.text.panelOptions.withDescription(name + ': Signal not found.')
       + g.panel.text.options.withContent(''),
 
     //Return as statPanel
-    asStat()::
+    asStat(name=signalName)::
+      self.asTimeSeries(),
+
+    asTable(name=signalName, format)::
       self.asTimeSeries(),
 
     //Return as timeSeriesPanel
-    asGauge()::
+    asGauge(name=signalName)::
       self.asTimeSeries(),
+    asTableColumn(override, format):: {},
   },
 
 }
